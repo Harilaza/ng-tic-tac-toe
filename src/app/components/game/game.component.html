@@ -1,0 +1,13 @@
+<div>
+  <h1>TIC TAC TOE </h1>
+  <div style="display: flex; justify-content: center; align-items: center; height: 80vh">
+    <div style="display: grid;grid-template-columns: repeat(3, 1fr);">
+      @for (cell of cells; track cell) {
+        <div style="flex: 1; border: 2px solid black; padding: 5dvh" (click)="makeMove($index)">
+          {{ cell }}
+        </div>
+      }
+    </div>
+  </div>
+  <button (click)="reset()">Recommencer</button>
+</div>
