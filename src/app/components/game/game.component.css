@@ -1,0 +1,27 @@
+.toe-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh
+}
+
+.toe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 10px double gray;
+  border-radius: 10px
+}
+
+.toe-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  border: 2px solid gray;
+  padding: 5dvh;
+  font-size: xxx-large;
+  font-weight: bolder;
+  height: 10dvh;
+  width: 5dvw;
+  color: gray
+}

@@ -23,7 +23,7 @@ export class GameComponent {
     [0, 4, 8], [2, 4, 6],
   ];
   firstMove: boolean = true;
-  found = false;
+  // found = false;
 
   async makeMove(index: number): Promise<void> {
     if (!this.cells[index] && !this.gameOver) {
@@ -44,6 +44,7 @@ export class GameComponent {
       .filter(index => index !== -1);
   };
   compareArrays(wins: number[], player:number[]) {
+    console.log(wins.filter(item => !player.includes(item)));
     return wins.filter(item => !player.includes(item));
   };
   initialMove(index: number): void {
@@ -63,51 +64,65 @@ export class GameComponent {
       this.initialMove(index);
       this.firstMove = false;
     } else {
-      let lastMove: Player = this.cells[index];
-      let player = this.getPlayerMove(this.cells, lastMove);
-      let anotherPlayer: Player = this.cells[index] === Player.O ? Player.X : Player.O;
-      let other = this.getPlayerMove(this.cells, anotherPlayer);
-      this.winnerPos.forEach(element => {
-        if (this.found) return;
-        let movePos = this.compareArrays(element, player);
-        if (movePos.length === 1) {
-          this.cells[movePos[0]] = anotherPlayer;
-          this.found = true;
-        }
-      });
-      this.attack(index);
-      this.placeMove(index);
-      this.checkWinner();
+      this.attack(index, true);
     }
   }
 
-  attack(index: number): void {
+  block(index: number, doBlock: boolean) {
+    let lastMove: Player = this.cells[index];
+    let player = this.getPlayerMove(this.cells, lastMove);
+    if (!doBlock) return;
+    let anotherPlayer: Player = this.cells[index] === Player.O ? Player.X : Player.O;
+    let other = this.getPlayerMove(this.cells, anotherPlayer);
+    let found: boolean = false;
+    this.winnerPos.forEach(element => {
+      if (found) return;
+      let movePos = this.compareArrays(element, player);
+      if (movePos.length === 1 && this.cells[movePos[0]] === Player.None) {
+        this.cells[movePos[0]] = anotherPlayer;
+        found = true;
+      }
+    });
+    this.checkWinner();
+    this.placeMove(index, !found);
+  }
+
+  attack(index: number, doAttack: boolean): void {
+    if (!doAttack) return;
     let anotherPlayer: Player = this.cells[index] === Player.O ? Player.X : Player.O;
     let other = this.getPlayerMove(this.cells, anotherPlayer);
     let finish: boolean = false;
-    console.log(other);
     this.winnerPos.forEach(element => {
       if (finish) return;
       let movePos = this.compareArrays(element, other);
-      if (movePos.length === 1) {
+      if (movePos.length === 1 && this.cells[movePos[0]] === Player.None ) {
         this.cells[movePos[0]] = anotherPlayer;
         finish = true;
       }
     });
+    this.checkWinner();
+    this.block(index, !finish);
   }
 
-  placeMove(index: number) : void {
+  placeMove(index: number, doMove: boolean) : void {
+    if (!doMove) return;
     let anotherPlayer: Player = this.cells[index] === Player.O ? Player.X : Player.O;
     let other = this.getPlayerMove(this.cells, anotherPlayer);
     let finish: boolean = false;
-    console.log(other);
     this.winnerPos.forEach(element => {
       if (finish) return;
       let movePos = this.compareArrays(element, other);
-      if (movePos.length > 1 ) {
-        this.cells[movePos[0]] = anotherPlayer;
+      if (movePos.length > 1 && this.cells[movePos[0]] === Player.None) {
+        this.cells[movePos[0]] = anotherPlayer ;
+        finish = true;
+      } else if (movePos.length > 1 && this.cells[movePos[1]] === Player.None) {
+        this.cells[movePos[1]] = anotherPlayer ;
+        finish = true;
+      } else if (movePos.length > 1 && this.cells[movePos[2]] === Player.None) {
+        this.cells[movePos[2]] = anotherPlayer;
         finish = true;
       }
+      this.checkWinner();
     });
   }
 
