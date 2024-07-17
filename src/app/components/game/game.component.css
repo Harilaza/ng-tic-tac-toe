@@ -2,7 +2,6 @@
 
 * {
   font-family: 'Playwrite HR', sans-serif;
-  height: 100%;
 }
 .title {
   font-weight: bolder;
@@ -101,7 +100,7 @@
 }
 
 .status {
-  right: 5dvh;
+  right: 100px;
   transition: 1s ease-in-out;
 }
 
@@ -110,6 +109,10 @@
   .toe-table {
     width: 80%;
     margin: 0 auto;
+  }
+
+  .status {
+    right: 40px;
   }
 
   .toe-grid {
@@ -137,5 +140,9 @@
   }
   .toe-cell {
     height: 80px;
+  }
+
+  .status {
+    right: 10px;
   }
 }
