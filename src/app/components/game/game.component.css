@@ -37,9 +37,10 @@
   align-items: center;
   flex: 1;
   border: 2px solid var(--bg-color);
-  font-size: xxx-large;
+  font-size: 2rem;
   font-weight: bolder;
-  color: var(--bg-color)
+  color: var(--bg-color);
+  height: 147px;
 }
 
 .reset {
@@ -120,6 +121,7 @@
 
   .toe-cell {
     text-align: center;
+    height: 130px;
   }
 }
 
@@ -132,5 +134,8 @@
 
   .toe-table {
     margin-block: 15dvh;
+  }
+  .toe-cell {
+    height: 80px;
   }
 }
