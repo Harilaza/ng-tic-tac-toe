@@ -2,23 +2,23 @@
 
 * {
   font-family: 'Playwrite HR', sans-serif;
+  height: 100%;
 }
 .title {
   font-weight: bolder;
-}
-.container {
-  height: 100%;
+  margin-inline: 2%;
 }
 
 .intro {
   font-weight: 800;
+  margin-inline: 2%;
 }
 
 .toe-table {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  padding-block: 5dvh;
 }
 
 .toe-grid {
@@ -27,6 +27,8 @@
   border: 10px double var(--bg-color);
   border-radius: 10px;
   background-color: var(--text-color);
+  width: 450px;
+  height: 450px;
 }
 
 .toe-cell {
@@ -35,11 +37,8 @@
   align-items: center;
   flex: 1;
   border: 2px solid var(--bg-color);
-  padding: 5dvh;
   font-size: xxx-large;
   font-weight: bolder;
-  height: 10dvh;
-  width: 5dvw;
   color: var(--bg-color)
 }
 
@@ -65,7 +64,7 @@
   position: fixed;
   background-color: var(--bg-color);
   top: 40dvh;
-  right: -23dvw;
+  right: -350px;
   height: 150px;
   width: 300px;
   border-radius: 20px;
@@ -113,6 +112,8 @@
   }
 
   .toe-grid {
+    width: 400px;
+    height: 400px;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /
   }
@@ -128,8 +129,8 @@
     width: 250px;
     height: 250px ;
   }
-  .toe-cell {
-    width: 1%;
-    height: 1px;
+
+  .toe-table {
+    margin-block: 15dvh;
   }
 }
