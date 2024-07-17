@@ -1,5 +1,7 @@
-<div>
-  <h1>TIC TAC TOE </h1>
+<div class="container">
+  <h1 class="title">TIC TAC TOE </h1>
+  <p class="intro">Est ce que vous voulez jouer avec moi parce que je n'ai aucun ami ?</p>
+  <p class="intro">Je vous laisse la première mouvement. </p>
   <div class="toe-table" >
     <div class="toe-grid" >
       @for (cell of cells; track cell) {
@@ -9,5 +11,40 @@
       }
     </div>
   </div>
-  <button (click)="reset()">Recommencer</button>
+  <div class="reset">
+    <button (click)="reset()">Recommencer</button>
+  </div>
+</div>
+
+<div class="success notifier" [ngClass]="{'status': result === 'success'}">
+  <div class="notifier-item">
+    <h2>🥳Génial !!!🥳</h2>
+    <p> Voulez-vous recommencer ?</p>
+    <div class="notifier-btn">
+      <button (click)="reset()" class="btn">Oui</button>
+      <button (click)="keepMove()" class="btn">Non</button>
+    </div>
+  </div>
+</div>
+
+<div class="defeat notifier " [ngClass]="{'status': result === 'defeat'}">
+  <div class="notifier-item">
+    <h2>😢Oh! Dommage!!!😢</h2>
+    <p> Voulez-vous retenter ?</p>
+    <div class="notifier-btn">
+      <button (click)="reset()" class="btn">Oui</button>
+      <button (click)="keepMove()" class="btn">Non</button>
+    </div>
+  </div>
+</div>
+
+<div class="draw notifier" [ngClass]="{'status': result === 'draw'}">
+  <div class="notifier-item">
+    <h2>😛Match null !!!😛</h2>
+    <p> On va le refaire ?</p>
+    <div class="notifier-btn">
+      <button (click)="reset()" class="btn">Oui</button>
+      <button (click)="keepMove()" class="btn">Non</button>
+    </div>
+  </div>
 </div>

@@ -1,15 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+HR:wght@100..400&display=swap');
+
+* {
+  font-family: 'Playwrite HR', sans-serif;
+}
+.title {
+  font-weight: bolder;
+}
+.container {
+  height: 100%;
+}
+
+.intro {
+  font-weight: 800;
+}
+
 .toe-table {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh
+  height: 70vh;
 }
 
 .toe-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 10px double gray;
-  border-radius: 10px
+  border: 10px double var(--bg-color);
+  border-radius: 10px;
+  background-color: var(--text-color);
 }
 
 .toe-cell {
@@ -17,11 +34,102 @@
   justify-content: center;
   align-items: center;
   flex: 1;
-  border: 2px solid gray;
+  border: 2px solid var(--bg-color);
   padding: 5dvh;
   font-size: xxx-large;
   font-weight: bolder;
   height: 10dvh;
   width: 5dvw;
-  color: gray
+  color: var(--bg-color)
+}
+
+.reset {
+  display: flex;
+  justify-content: center;
+}
+
+.reset button {
+  padding: 1% 4%;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px black;
+}
+
+.reset button:hover {
+  box-shadow: -5px -5px 7px black;
+  transform: scaleZ(2);
+}
+
+.notifier {
+  position: fixed;
+  background-color: var(--bg-color);
+  top: 40dvh;
+  right: -23dvw;
+  height: 150px;
+  width: 300px;
+  border-radius: 20px;
+  border: 2px solid var(--text-color);
+}
+
+.notifier-item {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.notifier-btn {
+  display: flex;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.notifier-item h2 {
+  font-size: 1.3rem;
+}
+
+.notifier .notifier-item .notifier-btn .btn {
+  background-color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.notifier .notifier-item .notifier-btn .btn:hover {
+  box-shadow: -3px -3px 10px var(--text-color);
+}
+
+.status {
+  right: 5dvh;
+  transition: 1s ease-in-out;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .toe-table {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .toe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /
+  }
+
+  .toe-cell {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .toe-grid {
+    width: 250px;
+    height: 250px ;
+  }
+  .toe-cell {
+    width: 1%;
+    height: 1px;
+  }
 }

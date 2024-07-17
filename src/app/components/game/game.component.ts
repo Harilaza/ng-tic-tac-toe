@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import {NgClass} from "@angular/common";
 
 enum Player {
   None= '',
@@ -8,7 +9,9 @@ enum Player {
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
@@ -23,7 +26,9 @@ export class GameComponent {
     [0, 4, 8], [2, 4, 6],
   ];
   firstMove: boolean = true;
+  result: 'success' | 'defeat' | 'draw' | '' = '';
   // found = false;
+
 
   async makeMove(index: number): Promise<void> {
     if (!this.cells[index] && !this.gameOver) {
@@ -44,7 +49,6 @@ export class GameComponent {
       .filter(index => index !== -1);
   };
   compareArrays(wins: number[], player:number[]) {
-    console.log(wins.filter(item => !player.includes(item)));
     return wins.filter(item => !player.includes(item));
   };
   initialMove(index: number): void {
@@ -127,6 +131,9 @@ export class GameComponent {
   }
 
   checkWinner(): void {
+    if (this.cells.every(cell => cell !== Player.None)) {
+      this.result = 'draw';
+    }
     for (let [a, b, c] of this.winnerPos) {
       if (
         this.cells[a] != Player.None &&
@@ -134,9 +141,13 @@ export class GameComponent {
         this.cells[a] === this.cells[c]) {
           this.winner = this.cells[a];
           this.gameOver = true;
-          alert("Le gagnant de cette manche est : " + this.winner);
+          this.result = this.winner === Player.O ? 'success' : 'defeat';
       }
     }
+  }
+
+  keepMove(): void {
+    this.result = '';
   }
 
   reset(): void {
@@ -144,5 +155,6 @@ export class GameComponent {
     this.currentPlayer = Player.O;
     this.winner = null;
     this.gameOver = false;
+    this.result = '';
   }
 }
